@@ -30,68 +30,37 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
-     * @param  Post $post
+     * @param  string $slug
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($slug)
     {
-        //
+        $post = Post::with(['user', 'category', 'tags'])->where('slug', $slug)->first();
+
+        if ($post) {
+            return response()->json([
+                'success'   => true,
+                'result'    => $post
+            ]);
+        } else {
+            return response()->json([
+                'success'   => false,
+            ]);
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  Post $post
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Post $post)
+    // Restituisce 9 post random per la homepage in Vue
+    public function random()
     {
-        //
-    }
+        $sql = Post::with(['user', 'category', 'tags'])->limit(9)->inRandomOrder();
+        $posts = $sql->get();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Post $post
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Post $post)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  Post $post
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Post $post)
-    {
-        //
+        return response()->json([
+            // 'sql'       => $sql->toSql(), // solo per debugging
+            'success'   => true,
+            'result'    => $posts,
+        ]);
     }
 }
