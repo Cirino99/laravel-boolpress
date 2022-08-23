@@ -17,7 +17,7 @@
                     @include('admin.includes.side-bar')
                     
                     <h1>Create new post</h1>
-                    <form action="{{ route('admin.posts.store') }}" method="post" novalidate>
+                    <form action="{{ route('admin.posts.store') }}" method="post" novalidate enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-3">
@@ -43,12 +43,14 @@
 
                         <div class="mb-3">
                             <label class="form-label" for="image">Image</label>
-                            <input class="form-control @error('image') is-invalid @enderror" type="url" name="image" id="image" value="{{ old('image') }}">
+                            <input class="form-control @error('image') is-invalid @enderror" type="file" name="image" id="image" accept="image/*">
                             @error('image')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
+
+                            <img id="previewImg" class="img-fluid" src="">
                         </div>
 
                         <div class="mb-3">

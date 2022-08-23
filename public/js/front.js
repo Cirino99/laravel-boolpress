@@ -44655,7 +44655,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App.vue */ "./resources/js/App.vue");
-/* harmony import */ var _pages_PageHome_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/PageHome.vue */ "./resources/js/pages/PageHome.vue");
+/* harmony import */ var _pages_PageHome_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/PageHome.vue */ "./resources/js/pages/PageHome.vue");
 /* harmony import */ var _pages_PageBlog_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/PageBlog.vue */ "./resources/js/pages/PageBlog.vue");
 /* harmony import */ var _pages_PageAbout_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/PageAbout.vue */ "./resources/js/pages/PageAbout.vue");
 /* harmony import */ var _pages_PageContacts_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/PageContacts.vue */ "./resources/js/pages/PageContacts.vue");
@@ -44686,7 +44686,7 @@ var routes = [{
   // qui mettiamo 9 post random
   path: '/',
   name: 'home',
-  component: _pages_PageHome_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
+  component: _pages_PageHome_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
   // questa è la index (paginata) dei post
   path: '/blog',

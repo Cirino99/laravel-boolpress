@@ -24,7 +24,7 @@
                         {{$tag->name}}
                         @endforeach
                     </p>
-                    <img src="{{$post->image}}" alt="{{$post->title}}">
+                    <img src="{{ asset('storage/' . $post->image) }}" alt="{{$post->title}}">
                     <figcaption>
                         <p>Content: {{$post->content}}</p>
                    </figcaption>
