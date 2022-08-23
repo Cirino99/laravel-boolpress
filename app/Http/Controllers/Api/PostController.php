@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
+    private function fixImageUrl($imgPath)
+    {
+        return $imgPath ? asset('/storage/' . $imgPath) : null;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,6 +27,10 @@ class PostController extends Controller
         }
 
         $posts = Post::with('user')->with('category')->with('tags')->paginate($per_page);
+
+        foreach ($posts as $post) {
+            $post->image = $this->fixImageUrl($post->image);
+        }
 
         return response()->json([
             'success'   => true,
@@ -38,6 +47,8 @@ class PostController extends Controller
     public function show($slug)
     {
         $post = Post::with(['user', 'category', 'tags'])->where('slug', $slug)->first();
+
+        $post->image = $this->fixImageUrl($post->image);
 
         if ($post) {
             return response()->json([
@@ -56,6 +67,10 @@ class PostController extends Controller
     {
         $sql = Post::with(['user', 'category', 'tags'])->limit(9)->inRandomOrder();
         $posts = $sql->get();
+
+        foreach ($posts as $post) {
+            $post->image = $this->fixImageUrl($post->image);
+        }
 
         return response()->json([
             // 'sql'       => $sql->toSql(), // solo per debugging
