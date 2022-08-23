@@ -124,11 +124,20 @@ class PostController extends Controller
             'category_id'  => 'required|integer|exists:categories,id',
             'tags'      => 'nullable|array',
             'tags.*'    => 'integer|exists:tags,id',
-            'image'     => 'required_without:content|nullable|url',
+            'image'     => 'required_without:content|nullable|file|image|max:1024',
             'content'   => 'required_without:image|nullable|string|max:5000',
         ]);
 
         $data = $request->all();
+
+        if (key_exists('image', $data)) {
+            // salvare l'immagine in public
+            $img_path = Storage::put('uploads', $data['image']);
+
+            // aggiornare il valore della chiave image con il nome dell'immagine appena creata
+            $data['image'] = $img_path;
+        }
+
         $data['slug'] = Post::getSlug($data['slug']);
         // update dei dati solo se dichiarato il fillable
         $post->update($data);

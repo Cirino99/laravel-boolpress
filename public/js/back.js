@@ -27804,6 +27804,23 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+var inputImage = document.getElementById('image');
+
+if (inputImage) {
+  var elePreview = document.getElementById('previewImg');
+  inputImage.addEventListener('change', function (event) {
+    var imgPath = event.target.files[0];
+    var reader = new FileReader();
+    reader.addEventListener('load', function () {
+      elePreview.src = reader.result;
+    });
+
+    if (imgPath) {
+      reader.readAsDataURL(imgPath);
+    }
+  });
+}
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
