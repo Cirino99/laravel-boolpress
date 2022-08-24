@@ -2,23 +2,26 @@
 
 namespace App\Mail;
 
+use App\Models\Guest;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class GuestToGuest extends Mailable
 {
     use Queueable, SerializesModels;
+
+    private $guest;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Guest $_guest)
     {
-        //
+        $this->guest = $_guest;
     }
 
     /**
@@ -28,6 +31,8 @@ class GuestToGuest extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('mails.GuestToGuest', [
+            'guest' => $this->guest,
+        ]);
     }
 }
