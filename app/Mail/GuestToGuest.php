@@ -31,7 +31,7 @@ class GuestToGuest extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.GuestToGuest', [
+        return $this->view('mails.guestToGuest', [
             'guest' => $this->guest,
         ]);
     }

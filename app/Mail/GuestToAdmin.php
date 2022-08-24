@@ -31,7 +31,7 @@ class GuestToAdmin extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.GuestToAdmin', [
+        return $this->view('mails.guestToAdmin', [
             'guest' => $this->guest,
         ]);
     }

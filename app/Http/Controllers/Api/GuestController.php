@@ -71,7 +71,7 @@ class GuestController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'success'   => false,
-                'response'  => 'C\'è stato un errore, riprova',
+                'response'  => $e->getMessage(),
             ], 500);
         }
 
