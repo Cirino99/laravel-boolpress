@@ -81,19 +81,18 @@ export default {
                 email: this.email,
                 message: this.message,
                 mailinglist: this.mailinglist
-            })
-                .then(res => {
-                    console.log(res.data)
-                    if (res.data.success) {
-                        this.resetForm();
-                        this.successMessage = res.data.response;
-                    } else {
-                        this.inputsErrorMessages = res.data.response;
-                    }
-                })
-                .catch(error => this.errorMessage = 'C\'è stato un errore imprevisto. Riprovare')
-                .finally(data => this.sending = false);
+            }).then(res => {
+                console.log(res.data)
+                if (res.data.success) {
+                    this.resetForm();
+                    this.successMessage = res.data.response;
+                } else {
+                    this.inputsErrorMessages = res.data.response;
+                }
+            }).catch(error => this.errorMessage = 'C\'è stato un errore imprevisto. Riprovare')
+            .finally(data => this.sending = false);
         },
+
         resetForm() {
             this.name = '';
             this.email = '';
